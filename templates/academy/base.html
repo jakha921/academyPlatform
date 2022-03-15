@@ -47,17 +47,7 @@
 							<ul class="nav-menu">
 							
 								<li class="active"><a href="{% url 'index' %}">Home<span class="submenu-indicator"></span></a></li>
-								
-								<li><a href="#">Courses<span class="submenu-indicator"></span></a>
-									<ul class="nav-dropdown nav-submenu">
-										</li>
-										<li><a href="list-layout-with-sidebar.html">Search Courses in List<span class="submenu-indicator"></span></a></li>
-										<li><a href="course-detail.html">Courses Detail<span class="submenu-indicator"></span></a></li>
-										<li><a href="explore-category.html">Explore Category</a></li>
-										<li><a href="find-instructor.html">Find Instructor</a></li>
-										<li><a href="instructor-detail.html">Instructor Detail</a></li>
-									</ul>
-								</li>
+								<li><a href="{% url 'list-layout-with-sidebar' %}">Courses<span class="submenu-indicator"></span></a></li>
 								
 								<li><a href="#">Pages<span class="submenu-indicator"></span></a>
 									<ul class="nav-dropdown nav-submenu">
@@ -67,18 +57,24 @@
 												<li><a href="list-shop-with-sidebar.html">Shop List Style</a></li>
 												<li><a href="wishlist.html">Wishlist</a></li>
 												<li><a href="checkout.html">Checkout</a></li>
+												<li><a href="coupons.html">Coupon</a></li>
+												<li><a href="course-category.html">Course Category</a></li>
 											</ul>
 										</li>
-										<li><a href="about.html">About Us</a></li>
-										<li><a href="blogs.html">Blog Style</a></li>
+										<li><a href="#">Blog Pages<span class="submenu-indicator"></span></a>
+											<ul class="nav-dropdown nav-submenu">
+												<li><a href="blogs.html">Blog Style</a></li>
+												<li><a href="blog-detail.html">Blog Detail</a></li>
+											</ul>
+										</li>
 										<li><a href="404.html">404 Page</a></li>
 										<li><a href="faq.html">FAQs</a></li>
 										<li><a href="{% url 'login' %}">Login</a></li>
-										<li><a href="{% url 'signup' %}">Signup</a></li>
-										<li><a href="{% url 'forgot' %}">Forgot</a></li>
 									</ul>
 								</li>
-								
+
+								<li><a href="{% url 'about' %}">About<span class="submenu-indicator"></span></a></li>
+								<li><a href="{% url 'contact' %}">Contact<span class="submenu-indicator"></span></a></li>
 								{% comment %} <li><a href="dashboard.html">Dashboard</a></li> {% endcomment %}
 								
 							</ul>
@@ -290,7 +286,7 @@
 			</div>
 			<!-- End Modal -->
 			
-			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+			<a `` id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 			
 
 		</div>

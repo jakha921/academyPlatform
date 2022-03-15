@@ -7,14 +7,13 @@ urlpatterns = [
     path('', views.IndexListView.as_view(), name='index'),
     path('signup', views.SignUpCreateView.as_view(), name='signup'),
     path('course-detail/<int:pk>', views.CourseDetailView.as_view(), name='course-detail'),
-    path('instructor-detail/<int:pk>', views.InstructorDetailView.as_view(), name='instructor-detail'),
-    path('grid-layout-with-sidebar', views.grid_layout_with_sidebar, name='grid-layout-with-sidebar'),
-    path('find-instructor', views.find_instructor, name='find-instructor'),
+    path('instructor-detail/<int:pk>', views.InstructorListView.as_view(), name='instructor-detail'),
     path('about', views.about, name='about'),
-    path('dashboard', views.dashboard, name='dashboard'),
-    path('login', views.login, name='login'),
+    path('login', views.LoginUserView.as_view(), name='login'),
     path('forgot', views.forgot, name='forgot'),
-    path('list-layout-with-sidebar', views.list_layout_with_sidebar, name='list-layout-with-sidebar'),
+    path('list-layout-with-sidebar', views.ListLayoutWithSidebarListView.as_view(), name='list-layout-with-sidebar'),
+    path('about', views.about, name='about'),
+    path('contact', views.contact, name='contact'),
 ]
 
 # template

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Instructor, Category, Course, Source, User, Comment
+from .models import Instructor, Category, Course, Source, User, Comment, Theme
 
 
 # Register your models here.
@@ -19,7 +19,7 @@ class InstructorAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             "fields": (
-                'firstname', 'lastname', 'email', 'password', 'avatar', 'short_description', 
+                'firstname', 'lastname', 'email', 'avatar', 'short_description', 
             ),
         }),
         ('Social media', {
@@ -35,8 +35,9 @@ class InstructorAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'get_image_preview', 'number_of_courses', 'is_active', )
+    list_display = ('title', 'number_of_courses', 'is_active', )
     list_display_links = ('title',)
+    fields = ('title', 'icon', 'is_active', )
     # list_editable = ('is_active', )
     
     readonly_fields = ('get_image_preview',)
@@ -69,7 +70,17 @@ class CategoryAdmin(admin.ModelAdmin):
 class SourceInline(admin.StackedInline):
     model = Source
     extra = 1
+
+@admin.register(Theme)
+class ThemeAdmin(admin.ModelAdmin):
+    pass
+
+    inlines = [SourceInline]
+
     
+
+    
+
 
 
 @admin.register(Course)
@@ -93,7 +104,6 @@ class CourseAdmin(admin.ModelAdmin):
         ),        
     )
     
-    inlines = [SourceInline]
 
 
 @admin.register(User)

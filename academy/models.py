@@ -12,9 +12,8 @@ class Instructor(models.Model):
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     email = models.EmailField(max_length=254)
-    password = models.CharField(max_length=20)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    short_description = models.TextField(blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars/')
+    short_description = models.TextField()
     tutor_rating = models.FloatField(default=0, validators=[
         MinValueValidator(0.0), MaxValueValidator(5.0)])
     instagram = models.URLField(blank=True)
@@ -31,26 +30,24 @@ class Instructor(models.Model):
 class Category(models.Model):
     """field of activity in with sphere of education (frontend, backend, fullstack, etc.)"""
     title = models.CharField(max_length=200)
-    description = models.TextField()
-    icon = models.ImageField(upload_to='icons/')
+    icon = models.CharField(
+        max_length=25, help_text='https://www.w3schools.com/icons/fontawesome5_icons_alert.asp  https://fontawesome.ru/cheatsheet/\n\tExapmle: fa fa-code')
     number_of_courses = models.IntegerField(default=0)
     is_active = models.BooleanField(default=False)
 
     def get_image_preview(self):
         if self.icon:
-            return mark_safe('<img src="%s" style="width: 60px; height:60px;" />' % self.icon.url)
+            return mark_safe('<i class="%s"></i>' % self.icon)
         else:
             return 'Image not found'
-    
+
     def get_count_of_courses_in_category(self):
         return Course.objects.filter(categories=self).count()
-    
+
     get_image_preview.short_description = 'image'
-    get_image_preview.allow_tags = True
     get_count_of_courses_in_category.short_description = 'Number of courses'
 
     number_of_courses = get_count_of_courses_in_category
-    
 
     def __str__(self):
         return self.title
@@ -78,15 +75,27 @@ class Course(models.Model):
         return self.title
 
 
+class Theme(models.Model):
+    courses = models.ForeignKey(Course, on_delete=models.CASCADE)
+    theme_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.theme_name
+
+
 class Source(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    # title = models.CharField(max_length=100)
-    video = models.URLField(blank=True, null=True, help_text='Youtube video link')
+    themes = models.ForeignKey(Theme, on_delete=models.CASCADE)
+    title = models.CharField(max_length=250)
+    video = models.URLField(blank=True, null=True,
+                            help_text='Youtube video link')
+    video_duration = models.CharField(max_length=8, blank=True, null=True)
     pdf = models.URLField(blank=True, null=True, help_text='PDF file link')
-    script = models.FileField(upload_to='script/', blank=True, null=True, help_text='upload script file')
-    
+    script = models.FileField(
+        upload_to='script/', blank=True, null=True, help_text='upload script file')
+    is_viewed = models.BooleanField(default=False)
+
     def __str__(self) -> str:
-        return self.course.title
+        return self.title
 
 
 class User(models.Model):
@@ -95,11 +104,11 @@ class User(models.Model):
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     email = models.EmailField(
-        max_length=254, help_text='Required. Inform a valid email address.')
+        max_length=254, unique=True)
     phone = models.IntegerField(
-        blank=True, null=True, help_text='optional. 10 digits only.')
+        blank=True, null=True)
     password = models.CharField(
-        max_length=20, help_text='Required. 20 characters or fewer. Letters, digits and @/./+/-/_ only.')
+        max_length=20)
     description = models.TextField(blank=True, null=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     active_courses = models.ManyToManyField(

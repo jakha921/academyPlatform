@@ -3,6 +3,18 @@ from django import forms
 from .models import User
 
 class SignUpForm(forms.ModelForm):
+    password=forms.CharField(widget=forms.PasswordInput(
+        attrs={
+                'class': 'form-control',
+                'placeholder': '*******',     
+                },
+    ))
+    confirm_password=forms.CharField(widget=forms.PasswordInput(
+        attrs={
+                'class': 'form-control',
+                'placeholder': '*******',     
+                },
+    ))
     class Meta:
         model = User
         fields = ['firstname', 'lastname', 'email', 'password' ]
@@ -19,14 +31,6 @@ class SignUpForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'support@themezhub.com',                
                 }),
-            'password': forms.PasswordInput(attrs={
-                'class': 'form-control',
-                'placeholder': '*******',     
-                }),
-            'confirm_password': forms.PasswordInput(attrs={
-                'class': 'form-control',
-                'placeholder': '*******',     
-                }),
         }
         
     def clean(self):
@@ -38,3 +42,8 @@ class SignUpForm(forms.ModelForm):
             raise forms.ValidationError(
                 "password and confirm_password does not match"
             )
+
+
+
+# <input type="text" class="form-control" placeholder="support@themezhub.com" />
+# <input type="text" class="form-control" placeholder="*******" />

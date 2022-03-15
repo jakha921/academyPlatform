@@ -118,7 +118,7 @@
 													<div class="crs_tutor">
 														<div class="crs_tutor_thumb">
 															<a href="{% url 'instructor-detail' course.author.id %}">
-																<img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" />
+																<img src="{{course.author.avatar.url}}" class="img-fluid circle" alt="" />
 															</a>
 														</div>
 														<div class="crs_tutor_name">
@@ -183,8 +183,8 @@
 						{% for category in categories %}
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
-									<div class="crs_cate_icon"><i class="fa fa-code"></i></div>
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
+									<div class="crs_cate_icon"><i class="{{category.icon}}"></i></div>
 									<div class="crs_cate_caption"><span>{{ category.title }}</span></div>
 									<div class="crs_cate_count"><span>{{ category.number_of_courses }} Darslar soni</span></div>
 								</a>
@@ -196,7 +196,7 @@
 						<!-- Single Category -->
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-window-restore"></i></div>
 									<div class="crs_cate_caption"><span>Web Designing</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
@@ -205,7 +205,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-leaf"></i></div>
 									<div class="crs_cate_caption"><span>Lifestyle</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
@@ -214,7 +214,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-heartbeat"></i></div>
 									<div class="crs_cate_caption"><span>Health & Fitness</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
@@ -223,7 +223,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-landmark"></i></div>
 									<div class="crs_cate_caption"><span>Gov. Exams</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
@@ -232,7 +232,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-photo-video"></i></div>
 									<div class="crs_cate_caption"><span>Photography</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
@@ -241,7 +241,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-stamp"></i></div>
 									<div class="crs_cate_caption"><span>Finance & Accounting</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
@@ -250,7 +250,7 @@
 						</div>
 						<div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
 							<div class="crs_cate_wrap style_2">
-								<a href="{% url 'grid-layout-with-sidebar' %}" class="crs_cate_box">
+								<a href="{% url 'list-layout-with-sidebar' %}" class="crs_cate_box">
 									<div class="crs_cate_icon"><i class="fa fa-school"></i></div>
 									<div class="crs_cate_caption"><span>Office Productivity</span></div>
 									<div class="crs_cate_count"><span>22 Darslar soni</span></div>
