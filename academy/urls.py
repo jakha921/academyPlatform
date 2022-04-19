@@ -5,16 +5,18 @@ from . import views
 
 urlpatterns = [
     path('', views.IndexListView.as_view(), name='index'),
-    path('signup', views.SignUpCreateView.as_view(), name='signup'),
+    path('signup/', views.SignUpCreateView.as_view(), name='signup'),
     path('course-detail/<int:pk>', views.CourseDetailView.as_view(), name='course-detail'),
     path('instructor-detail/<int:pk>', views.InstructorListView.as_view(), name='instructor-detail'),
-    path('about', views.about, name='about'),
-    path('login', views.LoginUserView.as_view(), name='login'),
-    path('forgot', views.forgot, name='forgot'),
-    path('list-layout-with-sidebar', views.ListLayoutWithSidebarListView.as_view(), name='list-layout-with-sidebar'),
-    path('about', views.about, name='about'),
-    path('contact', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
+    path('login/', views.LoginUserView.as_view(), name='login'),
+    path('forgot/', views.forgot, name='forgot'),
+    path('list-layout-with-sidebar/', views.ListLayoutWithSidebarListView.as_view(), name='list-layout-with-sidebar'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 ]
+
+# handler_404 =
 
 # template
 """urlpatterns = [

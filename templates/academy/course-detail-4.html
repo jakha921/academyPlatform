@@ -36,8 +36,10 @@
 						
 						<div class="col-xl-4 col-lg-5 col-md-5 col-sm-12">
 							<ul class="row p-0">
-								<!-- <li class="col-lg-6 col-md-6 col-sm-6 pt-2 pb-2"><i class="fas fa-star mr-1 text-warning"></i><span>4.9 Star (5,254)</span></li>
-								<li class="col-lg-6 col-md-6 col-sm-6 pt-2 pb-2"><i class="fas fa-user mr-1 text-info"></i><span>2,54,740 Enrolled</span></li> -->
+								<!-- === STAR === -->
+								<!-- <li class="col-lg-6 col-md-6 col-sm-6 pt-2 pb-2"><i class="fas fa-star mr-1 text-warning"></i><span>4.9 Star (5,254)</span></li> -->
+								<!-- === ENROLL  === -->
+								<!-- <li class="col-lg-6 col-md-6 col-sm-6 pt-2 pb-2"><i class="fas fa-user mr-1 text-info"></i><span>2,54,740 Enrolled</span></li> -->
 								<li class="col-lg-6 col-md-6 col-sm-6 pt-2 pb-2"><i class="fas fa-clock mr-1 text-success"></i><span>4 Hour 47 min</span></li>
 								<li class="col-lg-6 col-md-6 col-sm-6 pt-2 pb-2"><i class="fas fa-video mr-1 text-danger"></i><span>47 Lectures</span></li>
 							</ul>
@@ -87,11 +89,10 @@
 											<h6>Requirements</h6>
 											<ul class="simple-list p-0">
 												{% if course.requirements %}
-												{% comment %} {% for req in course.requirements %} {% endcomment %}
+												<!-- {% comment %} {% for req in course.requirements %} {% endcomment %} -->
 													<li>{{course.requirements}}</li>
-												{% comment %} {% endfor %} {% endcomment %}
+												<!-- {% comment %} {% endfor %} {% endcomment %} -->
 												{% else %}
-													<li>At vero eos et accusamus et iusto odio dignissimos ducimus</li>
 													<li>At vero eos et accusamus et iusto odio dignissimos ducimus</li>
 													<li>At vero eos et accusamus et iusto odio dignissimos ducimus</li>
 													<li>At vero eos et accusamus et iusto odio dignissimos ducimus</li>
@@ -108,35 +109,44 @@
 											<div id="accordionExample" class="accordion shadow circullum">
 
 												<!-- Part 1 -->
-											{% if source %}	
-
-											{% for src in source %}
-												<div class="card">
-												  <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-													<h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block position-relative text-dark collapsible-link py-2">
-														{{src.themes}}
-													</a></h6>
-												  </div>
-												  <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
-													<div class="card-body pl-3 pr-3">
-														<ul class="lectures_lists">
-
-															{% for sour in source %}
-																<li class="complete video" data-url="{{sour.video}}"><div class="lectures_lists_title"><i class="fas fa-play dios"></i></div>{{src.title}}<span class="cls_timing">40:20</span></li>
-															{% endfor %}
-															
-															
-															<!-- <li class="complete"><div class="lectures_lists_title"><i class="fas fa-check dios"></i></div>Startup Designing with HTML5 & CSS3<span class="cls_timing">20:12</span></li>
-															<li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>How To Call Google Map iFrame<span class="cls_timing">32:10</span></li>
-															<li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>Create Drop Down Navigation Using CSS3<span class="cls_timing">25:05</span></li>
-															<li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>How to Create Sticky Navigation Using JS<span class="cls_timing">18:10</span></li> -->
-
-
-														</ul>
+											{% if themes %}	
+												{% for theme in themes %}
+													<div class="card">
+													<div id="headingOne" class="card-header bg-white shadow-sm border-0">
+														<h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block position-relative text-dark collapsible-link py-2">
+															{{theme.theme_name}}
+														</a></h6>
 													</div>
-												  </div>
-												</div>
-											{% endfor %}	
+													<div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+														<div class="card-body pl-3 pr-3">
+															<ul class="lectures_lists">
+
+																{% if sources %}
+																	{% for source in sources %}
+																		<li class="complete video" data-url="{{source.video}}"><div class="lectures_lists_title"><i class="fas fa-play dios"></i></div>
+																			{{source.title}}   
+																			{% if source.pdf %} 
+																				<span class="pl-1">
+																					<a href="{{source.pdf}}">
+																						<i class='far fa-file-pdf'></i>
+																					</a>
+																				</span>
+																			{% endif %}
+																			<span class="cls_timing">40:20</span>
+																		</li>
+																	{% endfor %}
+																{% else %}
+																	<li class="complete"><div class="lectures_lists_title"><i class="fas fa-check dios"></i></div>Startup Designing with HTML5 & CSS3<span class="cls_timing">20:12</span></li>
+																	<li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>How To Call Google Map iFrame<span class="cls_timing">32:10</span></li>
+																	<li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>Create Drop Down Navigation Using CSS3<span class="cls_timing">25:05</span></li>
+																	<li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>How to Create Sticky Navigation Using JS<span class="cls_timing">18:10</span></li>
+																{% endif %}
+															
+															</ul>
+														</div>
+													</div>
+													</div>
+												{% endfor %}	
 											{% else %}
 												No founded sources
 											{% endif %}
@@ -380,9 +390,9 @@
 										<h2 class="theme-cl m-0">Free</span></h2>
 									{% endif %}
 								</div>
-								<div class="ed_view_link">
+								<!-- <div class="ed_view_link">
 									<a href="#" class="btn theme-bg enroll-btn">Enroll Now<i class="ti-angle-right"></i></a>
-								</div>
+								</div> -->
 								<div class="ed_view_features">
 									<div class="eld mb-3">
 										<h5 class="font-medium">This Course Include:</h5>

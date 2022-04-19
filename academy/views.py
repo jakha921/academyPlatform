@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm 
 from django.core.exceptions import ValidationError
 
-from .models import Category, Course, Instructor, User, Source
+from .models import Category, Course, Instructor, User, Source, Theme
 from .forms import SignUpForm
 
 # Create your views here.
@@ -32,9 +32,15 @@ class CourseDetailView(DetailView):
     context_object_name = 'course'
     
     def get_context_data(self, **kwargs):
+        pk = kwargs['object'].id
+        print(Theme.objects.filter(courses=pk))
         context = super().get_context_data(**kwargs)
-        context['source'] = Source.objects.all()       
-        context['instructor'] = Instructor.objects.all()        
+        context['sources'] = Source.objects.all()      
+        context['themes'] = Theme.objects.filter(courses=pk)       
+        # context['themes'] = Theme.objects.all()       
+        context['instructor'] = Instructor.objects.all()
+        
+        print(kwargs)  
         return context
 
 
